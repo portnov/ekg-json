@@ -56,7 +56,7 @@ sampleToJson metrics =
     buildOne m o = HM.foldlWithKey' build o m
 
     build :: A.Value -> T.Text -> Metrics.Value -> A.Value
-    build m name val = go m (map K.fromText $ T.splitOn "." name) val
+    build m name val = go m (T.splitOn "." name) val
 
     go :: A.Value -> [T.Text] -> Metrics.Value -> A.Value
     go (A.Object m) [str] val      = A.Object $ KM.insert str' metric m
